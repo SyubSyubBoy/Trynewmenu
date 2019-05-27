@@ -1,9 +1,13 @@
 package com.tailors.trynewmenu.domain.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tailors.trynewmenu.domain.EntityTimeStamp;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.*;
 
@@ -12,6 +16,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@Configurable
 public class Customer extends EntityTimeStamp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +31,15 @@ public class Customer extends EntityTimeStamp {
 
     @Column(name = "profile_picture")
     private String profilePicture;
+
+    @Builder
+    public Customer(String email, String displayName, String profilePicture) {
+        this.email = email;
+        this.displayName = displayName;
+        this.profilePicture = profilePicture;
+    }
+
+    public void test() {
+        logger.info(restTemplate == null ? "null" : "yes");
+    }
 }
