@@ -1,4 +1,4 @@
-package com.tailors.trynewmenu.infrastructure;
+package com.tailors.trynewmenu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
