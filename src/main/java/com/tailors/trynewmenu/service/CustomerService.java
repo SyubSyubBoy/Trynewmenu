@@ -10,8 +10,9 @@ import java.util.List;
 
 @Service
 public class CustomerService {
+
     @Autowired
-    private CustomerRepository customerRepository;
+    CustomerRepository customerRepository;
 
     public List<Customer> getAll() {
         return customerRepository.findAll();

@@ -38,8 +38,4 @@ public class Customer extends EntityTimeStamp {
         this.displayName = displayName;
         this.profilePicture = profilePicture;
     }
-
-    public void test() {
-        logger.info(restTemplate == null ? "null" : "yes");
-    }
 }

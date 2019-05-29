@@ -21,7 +21,7 @@ public class CustomerServiceTest {
     public void customerCrud() {
         Customer customer = Customer.builder()
                 .email("hodol@gmail.com")
-                .displayName("fuck")
+                .displayName("kooo")
                 .build();
         Customer saved = customerService.create(customer);
 
@@ -30,7 +30,8 @@ public class CustomerServiceTest {
         saved.setEmail("hodol2@dgsw.hs.kr");
         customerService.updateCustomer(saved);
 
-        saved.test();
         assertThat(customerService.getById(saved.getCustomerId()).getEmail(), is(customer.getEmail()));
+        customerService.deleteById(saved.getCustomerId());
+        assertThat(customerService.getAll().size(), is(0));
     }
 }
