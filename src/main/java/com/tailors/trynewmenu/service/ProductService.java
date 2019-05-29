@@ -3,12 +3,14 @@ package com.tailors.trynewmenu.service;
 import com.tailors.trynewmenu.domain.product.Product;
 import com.tailors.trynewmenu.domain.product.exception.ProductNotFoundException;
 import com.tailors.trynewmenu.domain.product.ProductRepository;
+import com.tailors.trynewmenu.service.dto.ProductDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -18,31 +20,37 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public List<Product> getMainProducts() {
-        return productRepository.findTop8ByOrderByProductViewsDesc();
+    public List<ProductDto.Response.MainResponse> getMainProducts() {
+        return productRepository.findTop8ByOrderByProductViewsDesc()
+                .stream().map(ProductDto.Response.MainResponse::new).collect(Collectors.toList());
     }
 
-    public Product getOne(String productCode) {
-        return productRepository.findById(productCode).orElseThrow(ProductNotFoundException::new);
+    public ProductDto.Response.MainResponse getOne(String productCode) {
+        return productRepository.findById(productCode).map(ProductDto.Response.MainResponse::new).orElseThrow(ProductNotFoundException::new);
     }
 
-    public Product createProduct(Product newProduct) {
-        return productRepository.save(newProduct);
+    public ProductDto.Response.MainResponse createProduct(ProductDto.Request.CreateRequest newProduct) {
+        Product result = productRepository.save(newProduct.toEntity());
+        return new ProductDto.Response.MainResponse(result);
     }
 
-    public Product updateProduct(Product target) {
-        return productRepository.findById(target.getProductCode()).map(product -> product.update(target))
+    public ProductDto.Response.MainResponse updateProduct(ProductDto.Request.UpdateRequest target) {
+        return productRepository.findById(target.getProductCode()).map(product ->
+                new ProductDto.Response.MainResponse(product.update(target.toEntity())))
                 .orElseThrow(ProductNotFoundException::new);
     }
 
-    public boolean deleteProduct(String code) {
+    public ProductDto.Response.DeleteResponse deleteProduct(String code) {
+        ProductDto.Response.DeleteResponse response = new ProductDto.Response.DeleteResponse(false);
+
         try {
             productRepository.deleteById(code);
-            return true;
+            response.setResult(true);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("Delete fail!");
-            return false;
         }
+
+        return response;
     }
 }

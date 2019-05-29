@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Access(value = AccessType.FIELD)
-@Table(name = "product")
+@Table(name = "dto")
 @Getter
 @NoArgsConstructor
 @Configurable
@@ -53,7 +53,7 @@ public class Product extends DomainEntity {
         }
 
         this.productPrice = newPrice;
-        return productRepository.save(this);
+        return this;
     }
 
     public Product changeProductName(String newName) {
@@ -62,7 +62,7 @@ public class Product extends DomainEntity {
         }
 
         this.productName = newName;
-        return productRepository.save(this);
+        return this;
     }
 
     public Product changeProductType(String productType) {
@@ -71,7 +71,7 @@ public class Product extends DomainEntity {
         }
 
         this.productType = productType;
-        return productRepository.save(this);
+        return this;
     }
 
     public Product changeProductCode(String productCode) {
