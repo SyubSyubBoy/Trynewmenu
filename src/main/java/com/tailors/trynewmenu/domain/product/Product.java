@@ -1,6 +1,7 @@
 package com.tailors.trynewmenu.domain.product;
 
-import com.tailors.trynewmenu.domain.EntityTimeStamp;
+import com.tailors.trynewmenu.domain.EntitySaveException;
+import com.tailors.trynewmenu.domain.DomainEntity;
 import com.tailors.trynewmenu.domain.product.exception.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Configurable
-public class Product extends EntityTimeStamp {
+public class Product extends DomainEntity {
 
     @Autowired
     private transient ProductRepository productRepository;
@@ -80,17 +81,16 @@ public class Product extends EntityTimeStamp {
 
         this.productCode = productCode;
 
-        try {
-            return productRepository.save(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new SameProductCodeException(e);
+        if (productRepository.findById(productCode).isPresent()) {
+            throw new SameProductCodeException();
         }
+
+        return this;
     }
 
     public Product addViewCount() {
         this.productViews += 1;
-        return productRepository.save(this);
+        return this;
     }
 
     public Product setViewCount(Integer viewCount) {
@@ -99,7 +99,15 @@ public class Product extends EntityTimeStamp {
         }
 
         this.productViews = viewCount;
-        return productRepository.save(this);
+        return this;
+    }
+
+    public Product save() {
+        try {
+            return productRepository.save(this);
+        } catch (Exception e) {
+            throw new EntitySaveException(e);
+        }
     }
 
     @Builder

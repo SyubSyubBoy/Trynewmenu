@@ -1,13 +1,8 @@
 package com.tailors.trynewmenu.domain.customer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tailors.trynewmenu.domain.EntityTimeStamp;
+import com.tailors.trynewmenu.domain.DomainEntity;
 import lombok.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.*;
 
@@ -17,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Configurable
-public class Customer extends EntityTimeStamp {
+public class Customer extends DomainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")

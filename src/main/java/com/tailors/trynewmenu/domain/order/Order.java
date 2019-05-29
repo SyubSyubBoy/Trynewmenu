@@ -1,6 +1,6 @@
 package com.tailors.trynewmenu.domain.order;
 
-import com.tailors.trynewmenu.domain.EntityTimeStamp;
+import com.tailors.trynewmenu.domain.DomainEntity;
 import com.tailors.trynewmenu.domain.customer.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Order extends EntityTimeStamp {
+public class Order extends DomainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_no")

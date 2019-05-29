@@ -1,25 +1,33 @@
-package com.tailors.trynewmenu.servie;
+package com.tailors.trynewmenu.domain;
 
 import com.tailors.trynewmenu.domain.product.Product;
 import com.tailors.trynewmenu.domain.product.ProductRepository;
-import com.tailors.trynewmenu.service.ProductService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductServiceTest {
+public class ProductTest {
 
     @Autowired
-    ProductService productService;
+    ProductRepository repository;
+
+    @Before
+    public void testBefore() {
+        Product product = Product.builder()
+                .productCode("UBD")
+                .productName("dkd")
+                .productPrice(1000)
+                .productType("hihi")
+                .build();
+    }
 
     @Test
-    public void productCrud() {
+    public void test() {
 
     }
 }
