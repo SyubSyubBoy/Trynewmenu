@@ -39,6 +39,9 @@ public class Product extends DomainEntity {
     @Column(name = "product_views")
     private Integer productViews;
 
+    @Column(name = "product_picture")
+    private String productPicture;
+
     public Product update(Product target) {
         this.productPrice = target.productPrice;
         this.productName = target.productName;
@@ -84,6 +87,12 @@ public class Product extends DomainEntity {
         if (productRepository.findById(productCode).isPresent()) {
             throw new SameProductCodeException();
         }
+
+        return this;
+    }
+
+    public Product changeProductPicture(String productPicture) {
+        this.productPicture = productPicture;
 
         return this;
     }

@@ -40,8 +40,8 @@ public class ProductService {
                 .orElseThrow(ProductNotFoundException::new);
     }
 
-    public ProductDto.Response.DeleteResponse deleteProduct(String code) {
-        ProductDto.Response.DeleteResponse response = new ProductDto.Response.DeleteResponse(false);
+    public ProductDto.Response.ResultResponse deleteProduct(String code) {
+        ProductDto.Response.ResultResponse response = new ProductDto.Response.ResultResponse(false);
 
         try {
             productRepository.deleteById(code);

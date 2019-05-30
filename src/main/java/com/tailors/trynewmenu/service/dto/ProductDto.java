@@ -106,7 +106,7 @@ public interface ProductDto extends DomainDto<Product> {
         @Data
         @NoArgsConstructor
         @AllArgsConstructor
-        class DeleteResponse {
+        class ResultResponse {
             @JsonProperty("result")
             boolean result;
 
