@@ -21,18 +21,6 @@ public class ProductTest {
 
     @Test
     public void test() {
-        Product product = Product.builder()
-                .productType("ANG")
-                .productCode("UBD")
-                .productName("ff")
-                .productPrice(2000)
-                .build();
 
-        product.save();
-
-        repository.findById(product.getProductCode()).map(pr -> {
-            assertThat(pr.getProductCode(), is(product.getProductCode()));
-            return pr;
-        }).orElseThrow(ProductNotFoundException::new);
     }
 }

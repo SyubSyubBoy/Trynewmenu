@@ -4,8 +4,10 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'application'
 
 group = 'com.tailors'
+mainClassName = 'com.tailors.trynewmenu.TrynewmenuApplication'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -17,6 +19,10 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+application {
+    applicationDefaultJvmArgs = ['-javaagent:/aspectjweaver-1.9.0.jar', '-javaagent:/spring-instrument-5.1.4.RELEASE.jar']
 }
 
 dependencies {
