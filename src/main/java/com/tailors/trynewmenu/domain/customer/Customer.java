@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 @Getter
 @Setter
 @NoArgsConstructor

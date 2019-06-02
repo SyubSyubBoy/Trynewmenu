@@ -30,7 +30,7 @@ public class ProductService {
     }
 
     public ProductDto.Response.MainResponse createProduct(ProductDto.Request.CreateRequest newProduct) {
-        Product result = productRepository.save(newProduct.toEntity());
+        Product result = newProduct.toEntity().save();
         return new ProductDto.Response.MainResponse(result);
     }
 

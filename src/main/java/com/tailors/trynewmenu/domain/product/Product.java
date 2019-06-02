@@ -1,7 +1,7 @@
 package com.tailors.trynewmenu.domain.product;
 
-import com.tailors.trynewmenu.domain.EntitySaveException;
 import com.tailors.trynewmenu.domain.DomainEntity;
+import com.tailors.trynewmenu.domain.EntitySaveException;
 import com.tailors.trynewmenu.domain.product.exception.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,14 +13,15 @@ import org.springframework.util.StringUtils;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "products")
 @Access(value = AccessType.FIELD)
-@Table(name = "dto")
 @Getter
 @NoArgsConstructor
 @Configurable
 public class Product extends DomainEntity {
 
     @Autowired
+    @Transient
     private transient ProductRepository productRepository;
 
     @Id

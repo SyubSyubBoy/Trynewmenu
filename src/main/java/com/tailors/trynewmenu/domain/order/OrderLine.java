@@ -8,14 +8,14 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "orderline")
+@Table(name = "order_lines")
 @Getter
 @Setter
 @NoArgsConstructor
 public class OrderLine {
     @Id
     @GeneratedValue
-    @Column(name = "orderline_id")
+    @Column(name = "order_line_id")
     private Long orderLineId;
 
     @ManyToOne(optional = false)
@@ -23,5 +23,6 @@ public class OrderLine {
     private Order order;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "product_code")
     private Product product;
 }
