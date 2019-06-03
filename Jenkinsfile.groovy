@@ -1,7 +1,7 @@
 node {
     stage('clone') {
         echo 'clone start'
-        git 'git@github.com:SyubSyubBoy/Trynewmenu.git'
+        sh 'ssh -T git@github.com'
     }
     dir('project') {
         state('start') {
