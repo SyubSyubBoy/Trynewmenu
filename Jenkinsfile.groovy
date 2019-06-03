@@ -4,7 +4,7 @@ node {
         git url: 'git@github.com:SyubSyubBoy/Trynewmenu.git', branch: 'master', credentialsId: 'github-auth'
     }
     dir('project') {
-        state('start') {
+        stage('start') {
             echo 'build start'
         }
     }
