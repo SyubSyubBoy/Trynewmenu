@@ -27,10 +27,11 @@ public class ProductTest {
                 .productName("앙")
                 .productPrice(12400)
                 .build();
-        product.save();
+        repository.save(product);
 
         assertThat(repository.findById(product.getProductCode()).isPresent(), is(true));
-        product.changePrice(12600).save();
+        product.changePrice(12600);
+        repository.save(product);
         assertThat(repository.findById(product.getProductCode()).get().getProductPrice(), is(12600));
 
         repository.deleteById(product.getProductCode());

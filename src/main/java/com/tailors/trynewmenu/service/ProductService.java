@@ -26,12 +26,13 @@ public class ProductService {
     }
 
     public ProductDto.Response.MainResponse getOne(String productCode) {
-        return productRepository.findById(productCode).map(ProductDto.Response.MainResponse::new).orElseThrow(ProductNotFoundException::new);
+        return productRepository.findById(productCode).map(ProductDto.Response.MainResponse::new)
+                .orElseThrow(ProductNotFoundException::new);
     }
 
     public ProductDto.Response.MainResponse createProduct(ProductDto.Request.CreateRequest newProduct) {
-        Product result = newProduct.toEntity().save();
-        return new ProductDto.Response.MainResponse(result);
+        Product result = newProduct.toEntity();
+        return new ProductDto.Response.MainResponse(productRepository.save(result));
     }
 
     public ProductDto.Response.MainResponse updateProduct(ProductDto.Request.UpdateRequest target) {
@@ -48,7 +49,7 @@ public class ProductService {
             response.setResult(true);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.info("Delete fail!");
+            logger.info("Delete failed");
         }
 
         return response;

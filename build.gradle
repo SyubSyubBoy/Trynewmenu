@@ -21,16 +21,6 @@ repositories {
     mavenCentral()
 }
 
-bootRun {
-    jvmArgs = ['-javaagent:' + configSourceLocation + '/config-source/aspectjweaver-1.9.0.jar',
-               '-javaagent:' + configSourceLocation + '/config-source/spring-instrument-5.1.4.RELEASE.jar']
-}
-
-test {
-    jvmArgs = ['-javaagent:' + configSourceLocation + '/config-source/aspectjweaver-1.9.0.jar',
-               '-javaagent:' + configSourceLocation + '/config-source/spring-instrument-5.1.4.RELEASE.jar']
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
@@ -43,6 +33,4 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.4'
-    compile group: 'org.springframework', name: 'spring-instrument', version: '5.1.4.RELEASE'
 }

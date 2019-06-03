@@ -17,12 +17,7 @@ import javax.persistence.*;
 @Access(value = AccessType.FIELD)
 @Getter
 @NoArgsConstructor
-@Configurable
 public class Product extends DomainEntity {
-
-    @Autowired
-    @Transient
-    private transient ProductRepository productRepository;
 
     @Id
     @Column(name = "product_code")
@@ -48,7 +43,7 @@ public class Product extends DomainEntity {
         this.productName = target.productName;
         this.productType = target.productType;
         this.productViews = target.productViews;
-        return productRepository.save(this);
+        return this;
     }
 
     public Product changePrice(Integer newPrice) {
@@ -85,10 +80,6 @@ public class Product extends DomainEntity {
 
         this.productCode = productCode;
 
-        if (productRepository.findById(productCode).isPresent()) {
-            throw new SameProductCodeException();
-        }
-
         return this;
     }
 
@@ -110,14 +101,6 @@ public class Product extends DomainEntity {
 
         this.productViews = viewCount;
         return this;
-    }
-
-    public Product save() {
-        try {
-            return productRepository.save(this);
-        } catch (Exception e) {
-            throw new EntitySaveException(e);
-        }
     }
 
     @Builder
