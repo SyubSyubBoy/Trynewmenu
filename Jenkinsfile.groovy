@@ -6,7 +6,7 @@ node {
     dir('project') {
         stage('start') {
             echo 'build start'
-            sh 'ls /'
+            sh 'ls'
         }
     }
 }
