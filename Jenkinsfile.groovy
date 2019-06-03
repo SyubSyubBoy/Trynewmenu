@@ -3,10 +3,7 @@ node {
         echo 'clone start'
         git url: 'git@github.com:SyubSyubBoy/Trynewmenu.git', branch: 'master', credentialsId: 'github-auth'
     }
-    dir('project') {
-        stage('start') {
-            echo 'build start'
-            sh 'ls'
-        }
+    state('build') {
+        sh './gradlew clean build'
     }
 }
