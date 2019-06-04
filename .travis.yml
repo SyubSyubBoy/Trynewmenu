@@ -16,10 +16,16 @@ script: "./gradlew clean build"
 notifications:
   slack: tailorsworkspace:HQ6Vijrt0JjC7pcW07VIYtv4
 
+before_deploy:
+  - zip -r trynewmenu *
+  - mkdir -p deploy
+  - mv trynewmenu.zip deploy/trynewmenu.zip
+
 deploy:
   provider: s3
   access_key_id: AKIAR4IIK2VL32N5EAQL
   secret_access_key: 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
+  local_dir: deploy
   bucket: trynewmenu-api-server-deploy
   region: ap-northeast-2
   skip_cleanup: true
