@@ -12,3 +12,6 @@ cache:
     - '$HOME/.gradle'
 
 script: "./gradlew clean build"
+
+notifications:
+  slack: tailorsworkspace:HQ6Vijrt0JjC7pcW07VIYtv4
