@@ -17,14 +17,14 @@ notifications:
   slack: tailorsworkspace:HQ6Vijrt0JjC7pcW07VIYtv4
 
 deploy:
-  - provider: s3
-    access_key_id: AKIAR4IIK2VL32N5EAQL
-    secret_access_key: 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
-    bucket: trynewmenu-api-server-deploy
-    region: ap-northeast-2
-    skip_cleanup: true
-    acl: public_read
-    wait-until-deployed: true
-    on:
-      repo: SyubSyubBoy/Trynewmenu
-      branch: master
+  provider: s3
+  access_key_id: AKIAR4IIK2VL32N5EAQL
+  secret_access_key: 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
+  bucket: trynewmenu-api-server-deploy
+  region: ap-northeast-2
+  skip_cleanup: true
+  acl: public_read
+  wait-until-deployed: true
+  on:
+    repo: SyubSyubBoy/Trynewmenu
+    branch: master
