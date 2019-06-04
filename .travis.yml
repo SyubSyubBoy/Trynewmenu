@@ -17,20 +17,33 @@ notifications:
   slack: tailorsworkspace:HQ6Vijrt0JjC7pcW07VIYtv4
 
 before_deploy:
-  - zip -r trynewmenu *
+  - zip -r trynewmenu-api-server *
   - mkdir -p deploy
-  - mv trynewmenu.zip deploy/trynewmenu.zip
+  - mv trynewmenu-api-server.zip deploy/trynewmenu-api-server.zip
 
 deploy:
-  provider: s3
-  access_key_id: AKIAR4IIK2VL32N5EAQL
-  secret_access_key: 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
-  local_dir: deploy
-  bucket: trynewmenu-api-server-deploy
-  region: ap-northeast-2
-  skip_cleanup: true
-  acl: public_read
-  wait-until-deployed: true
-  on:
-    repo: SyubSyubBoy/Trynewmenu
-    branch: master
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    local_dir: deploy
+    bucket: trynewmenu-api-server-deploy
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: public_read
+    wait-until-deployed: true
+    on:
+      repo: SyubSyubBoy/Trynewmenu
+      branch: master
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: trynewmenu-api-server-deploy
+    key: trynewmenu-api-server.zip
+    bundle_type: zip
+    application: trynewmenu-api-server
+    deployment_group: trynewmenu
+    region: ap-northeast-2
+    wait-until-deployed: true
+    on:
+      repo: SyubSyubBoy/Trynewmenu
+      branch: master
