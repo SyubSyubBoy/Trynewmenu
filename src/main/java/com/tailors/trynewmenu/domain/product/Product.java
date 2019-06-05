@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products")
+@Table(name = "TRM_Product")
 @Access(value = AccessType.FIELD)
 @Getter
 @NoArgsConstructor
@@ -23,7 +23,7 @@ public class Product extends DomainEntity {
     @Column(name = "product_code")
     private String productCode;
 
-    @Column(name = "product_name", nullable = false, unique = true)
+    @Column(name = "product_name", nullable = false)
     private String productName;
 
     @Column(name = "product_price", nullable = false)

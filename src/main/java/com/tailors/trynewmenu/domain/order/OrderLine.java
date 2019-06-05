@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order_lines")
+@Table(name = "TRM_OrderLine")
 @Getter
 @Setter
 @NoArgsConstructor
