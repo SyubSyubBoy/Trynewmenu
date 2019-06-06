@@ -14,6 +14,6 @@ public class DomainEntity {
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }
