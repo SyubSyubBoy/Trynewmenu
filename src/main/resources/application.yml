@@ -3,3 +3,38 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+cloud:
+  aws:
+    s3:
+      bucket: trynewmenu-static-resource-server
+    region:
+      static: ap-northeast-2
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://database-trynewmenu.cqahz3tmmzgt.ap-northeast-2.rds.amazonaws.com/trynewmenu?useUnicode=true&characterEncoding=utf8
+    username: admin
+    password: N6OOoRwNpnpW4k63pyNe
+    driver-class-name: com.mysql.jdbc.Driver
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: validate
+---
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://127.0.0.1/trynewmenu
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+---
+spring:
+  profiles: test
