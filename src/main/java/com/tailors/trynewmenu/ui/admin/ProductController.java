@@ -1,4 +1,4 @@
-package com.tailors.trynewmenu.ui;
+package com.tailors.trynewmenu.ui.admin;
 
 import com.tailors.trynewmenu.service.ProductService;
 import com.tailors.trynewmenu.service.dto.ProductDto;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/admin/product")
 public class ProductController {
 
     @Autowired

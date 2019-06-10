@@ -1,4 +1,4 @@
-package com.tailors.trynewmenu.ui;
+package com.tailors.trynewmenu.ui.util;
 
 import com.tailors.trynewmenu.infrastructure.resourcemanagement.FileUploadResult;
 import com.tailors.trynewmenu.infrastructure.resourcemanagement.FileUploadService;

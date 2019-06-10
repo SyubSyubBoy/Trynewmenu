@@ -8,7 +8,7 @@ spring:
 cloud:
   aws:
     s3:
-      bucket: trynewmenu-static-resource-server
+      bucket: trynewmenu-static-util-server
     region:
       static: ap-northeast-2
 ---
