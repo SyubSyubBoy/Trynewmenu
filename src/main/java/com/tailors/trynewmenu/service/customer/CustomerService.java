@@ -1,4 +1,4 @@
-package com.tailors.trynewmenu.service;
+package com.tailors.trynewmenu.service.customer;
 
 import com.tailors.trynewmenu.domain.customer.Customer;
 import com.tailors.trynewmenu.domain.customer.CustomerNotFoundException;
