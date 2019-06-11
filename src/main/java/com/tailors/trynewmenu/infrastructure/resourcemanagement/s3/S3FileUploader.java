@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
@@ -55,6 +56,10 @@ public class S3FileUploader {
     }
 
     private Optional<File> convert(MultipartFile file) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("File argument must not be null");
+        }
+
         File convertFile = new File(file.getOriginalFilename());
         if(convertFile.createNewFile()) {
             try (FileOutputStream fos = new FileOutputStream(convertFile)) {

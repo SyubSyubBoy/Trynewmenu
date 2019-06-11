@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "TRM_Product")
@@ -34,14 +35,6 @@ public class Product extends DomainEntity {
 
     @Column(name = "product_picture")
     private String productPicture;
-
-    public Product update(Product target) {
-        this.productPrice = target.productPrice;
-        this.productName = target.productName;
-        this.productType = target.productType;
-        this.productViews = target.productViews;
-        return this;
-    }
 
     public Product changePrice(Integer newPrice) {
         if (newPrice < 0) {
@@ -97,6 +90,15 @@ public class Product extends DomainEntity {
         }
 
         this.productViews = viewCount;
+        return this;
+    }
+
+    public Product update(Product p) {
+        Optional.ofNullable(p.getProductCode()).map(this::changeProductCode);
+        Optional.ofNullable(p.getProductType()).map(this::changeProductType);
+        Optional.ofNullable(p.getProductName()).map(this::changeProductName);
+        Optional.ofNullable(p.getProductPrice()).map(this::changePrice);
+        Optional.ofNullable(p.getProductPicture()).map(this::changeProductPicture);
         return this;
     }
 

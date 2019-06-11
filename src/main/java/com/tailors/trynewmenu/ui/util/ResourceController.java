@@ -2,13 +2,16 @@ package com.tailors.trynewmenu.ui.util;
 
 import com.tailors.trynewmenu.infrastructure.resourcemanagement.FileUploadResult;
 import com.tailors.trynewmenu.infrastructure.resourcemanagement.FileUploadService;
+import com.tailors.trynewmenu.ui.dto.ProductDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
+import java.util.UUID;
+
+@Slf4j
 @RestController
 public class ResourceController {
 

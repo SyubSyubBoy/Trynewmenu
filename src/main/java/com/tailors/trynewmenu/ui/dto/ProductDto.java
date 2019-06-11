@@ -50,14 +50,18 @@ public interface ProductDto extends DomainDto<Product> {
         @JsonProperty("product_price")
         Integer productPrice;
 
+        @JsonProperty("product_picture")
+        String productPicture;
+
         @Override
         public Product toEntity() {
-            return Product.builder()
+            Product product = Product.builder()
                     .productCode(productCode)
                     .productType(productType)
                     .productPrice(productPrice)
                     .productName(productName)
                     .build();
+            return product.changeProductPicture(productPicture);
         }
     }
 

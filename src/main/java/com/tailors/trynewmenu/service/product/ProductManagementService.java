@@ -26,10 +26,7 @@ public class ProductManagementService {
 
     public Product updateProduct(final ProductDto.UpdateRequest request) {
         return productRepository.findById(request.getProductCode()).map(p -> {
-            p.changeProductCode(request.getProductCode());
-            p.changeProductName(request.getProductName());
-            p.changePrice(request.getProductPrice());
-            p.changeProductType(request.getProductType());
+            p.update(request.toEntity());
             return productRepository.save(p);
         }).orElseThrow(ProductNotFoundException::new);
     }
