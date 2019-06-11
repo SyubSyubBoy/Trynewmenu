@@ -1,7 +1,7 @@
-package com.tailors.trynewmenu.domain.product.exception;
+package com.tailors.trynewmenu.service.product.exception;
 
 public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException() {
-        super("dto not found");
+        super("Product not found");
     }
 }

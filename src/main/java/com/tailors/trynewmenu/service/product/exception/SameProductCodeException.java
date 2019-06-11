@@ -1,7 +1,7 @@
-package com.tailors.trynewmenu.domain.product.exception;
+package com.tailors.trynewmenu.service.product.exception;
 
 public class SameProductCodeException extends RuntimeException {
     public SameProductCodeException() {
-        super("dto code must be seperate");
+        super("Product code must not be same");
     }
 }

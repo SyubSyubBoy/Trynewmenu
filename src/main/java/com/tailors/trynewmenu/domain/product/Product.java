@@ -1,13 +1,10 @@
 package com.tailors.trynewmenu.domain.product;
 
 import com.tailors.trynewmenu.domain.DomainEntity;
-import com.tailors.trynewmenu.domain.EntitySaveException;
 import com.tailors.trynewmenu.domain.product.exception.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
