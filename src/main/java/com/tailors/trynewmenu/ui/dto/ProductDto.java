@@ -8,19 +8,29 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public interface ProductDto extends DomainDto<Product> {
     @Data
     @NoArgsConstructor
     class CreateRequest implements ProductDto {
+        @NotEmpty
         @JsonProperty("product_code")
         String productCode;
 
+        @NotEmpty
         @JsonProperty("product_name")
         String productName;
 
+        @NotEmpty
         @JsonProperty("product_type")
         String productType;
 
+        @Min(0)
+        @NotNull
         @JsonProperty("product_price")
         Integer productPrice;
 
@@ -38,6 +48,7 @@ public interface ProductDto extends DomainDto<Product> {
     @Data
     @NoArgsConstructor
     class UpdateRequest implements DomainDto<Product> {
+        @NotEmpty
         @JsonProperty("product_code")
         String productCode;
 
@@ -47,6 +58,7 @@ public interface ProductDto extends DomainDto<Product> {
         @JsonProperty("product_type")
         String productType;
 
+        @Min(0)
         @JsonProperty("product_price")
         Integer productPrice;
 
@@ -68,6 +80,7 @@ public interface ProductDto extends DomainDto<Product> {
     @Data
     @NoArgsConstructor
     class DeleteRequest {
+        @NotEmpty
         @JsonProperty("product_code")
         String productCode;
     }
