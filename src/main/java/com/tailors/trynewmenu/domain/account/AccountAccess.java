@@ -16,10 +16,14 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AccountAccess extends DomainEntity {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "account_id", columnDefinition = "BINARY(16)")
-    private UUID accountId;
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountAccessId;
+
+    public AccountAccess(Account account) {
+        this.account = account;
+    }
 }

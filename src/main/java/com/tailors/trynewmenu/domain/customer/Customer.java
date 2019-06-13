@@ -65,6 +65,7 @@ public class Customer extends DomainEntity {
 
     @Builder
     public Customer(UUID customerId, String email, String displayName, String profilePicture) {
+        this.customerId = customerId;
         this.email = email;
         this.displayName = displayName;
         this.profilePicture = profilePicture;

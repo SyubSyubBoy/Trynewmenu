@@ -1,5 +1,6 @@
 package com.tailors.trynewmenu.domain.account;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,4 +18,11 @@ public class EmailAccountAccess extends AccountAccess {
 
     @Column(name = "password")
     private String password;
+
+    @Builder
+    public EmailAccountAccess(Account account, String email, String password) {
+        super(account);
+        this.email = email;
+        this.password = password;
+    }
 }
