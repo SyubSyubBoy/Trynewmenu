@@ -45,11 +45,9 @@ public interface CustomerDto extends DomainDto<Customer> {
         @JsonProperty("customer_id")
         String customerId;
 
-        @NotEmpty
         @JsonProperty("email")
         String email;
 
-        @NotEmpty
         @JsonProperty("display_name")
         String displayName;
 
