@@ -20,12 +20,12 @@ public class CustomerSerivce {
         return customerRepository.findById(customerId).orElseThrow(CustomerNotFoundException::new);
     }
 
-    public Customer createNewCustomer(CustomerDto.CreateRequest request) {
-        if (customerRepository.findByEmail(request.getEmail()).isPresent()) {
+    public Customer createNewCustomer(Customer customer) {
+        if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
             throw new EmailUsedException();
         }
 
-        return customerRepository.save(request.toEntity());
+        return customerRepository.save(customer);
     }
 
     public Customer updateCustomer(CustomerDto.UpdateRequest request) {

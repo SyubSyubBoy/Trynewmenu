@@ -1,6 +1,7 @@
 package com.tailors.trynewmenu.domain.customer;
 
 import com.tailors.trynewmenu.domain.DomainEntity;
+import com.tailors.trynewmenu.domain.account.Account;
 import com.tailors.trynewmenu.domain.customer.exception.DisplayNameEmptyException;
 import com.tailors.trynewmenu.domain.customer.exception.EmailEmptyException;
 import lombok.*;
@@ -32,6 +33,9 @@ public class Customer extends DomainEntity {
 
     @Column(name = "profile_picture")
     private String profilePicture;
+
+    @OneToOne(mappedBy = "customer")
+    private Account account;
 
     public Customer update(Customer c) {
         Optional.ofNullable(c.getEmail()).map(this::changeEmail);
