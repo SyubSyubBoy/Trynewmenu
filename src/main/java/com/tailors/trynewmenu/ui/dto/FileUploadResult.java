@@ -1,4 +1,4 @@
-package com.tailors.trynewmenu.infrastructure.resourcemanagement;
+package com.tailors.trynewmenu.ui.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

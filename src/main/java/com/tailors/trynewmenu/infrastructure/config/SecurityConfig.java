@@ -29,12 +29,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // Security CORS 설정
         http.csrf().disable().cors().configurationSource(corsConfigurationSource());
-
+        // 권한 설정
         http.authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers(HttpMethod.POST,"/product").permitAll()
                 .antMatchers("/**").permitAll();
+        // 기본 로그인 기능 비활성화
+        http.formLogin().disable()
+                .httpBasic().disable();
+
     }
 
     @Bean

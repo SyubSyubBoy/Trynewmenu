@@ -27,18 +27,3 @@ spring:
       show-sql: true
       hibernate:
         ddl-auto: validate
----
-spring:
-  profiles: local
-  datasource:
-    url: jdbc:mysql://127.0.0.1/trynewmenu
-    username: root
-    password: 1234
-    driver-class-name: com.mysql.jdbc.Driver
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
----
-spring:
-  profiles: test
