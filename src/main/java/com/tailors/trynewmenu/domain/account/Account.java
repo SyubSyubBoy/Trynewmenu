@@ -1,11 +1,13 @@
 package com.tailors.trynewmenu.domain.account;
 
 import com.tailors.trynewmenu.domain.DomainEntity;
+import com.tailors.trynewmenu.domain.account.exception.EmailValidationException;
 import com.tailors.trynewmenu.domain.customer.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -44,6 +46,16 @@ public abstract class Account extends DomainEntity implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")
     protected List<AccountAccess> accountAccessList = new ArrayList<>();
+
+    public void changeEmail(String email) {
+        if (!EmailValidator.getInstance().isValid(email)) {
+            throw new EmailValidationException();
+        }
+    }
+
+    public void setAccountAccessList(List<AccountAccess> accountAccessList) {
+        this.accountAccessList = accountAccessList;
+    }
 
     public void addAccountAccess(AccountAccess accountAccess) {
         this.accountAccessList.add(accountAccess);

@@ -1,7 +1,7 @@
 package com.tailors.trynewmenu.service;
 
 import com.tailors.trynewmenu.domain.account.Account;
-import com.tailors.trynewmenu.service.account.CustomerSignupService;
+import com.tailors.trynewmenu.service.customer.CustomerSignupService;
 import com.tailors.trynewmenu.ui.dto.CustomerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

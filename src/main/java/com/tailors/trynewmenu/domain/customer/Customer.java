@@ -22,24 +22,22 @@ public class Customer extends Account {
     @Column(name = "profile_picture")
     private String profilePicture;
 
-    public Customer update(Customer c) {
-        Optional.ofNullable(c.getDisplayName()).map(this::changeDisplayName);
-        Optional.ofNullable(c.getProfilePicture()).map(this::changeProfilePicture);
-        return this;
-    }
-
-    public Customer changeDisplayName(String displayName) {
+    public void changeDisplayName(String displayName) {
         if (StringUtils.isEmpty(displayName)) {
             throw new DisplayNameEmptyException();
         }
 
         this.displayName = displayName;
-        return this;
     }
 
-    public Customer changeProfilePicture(String newProfilePicture) {
+    public void changeProfilePicture(String newProfilePicture) {
         this.profilePicture = newProfilePicture;
-        return this;
+    }
+
+    public void update(Customer customer) {
+        Optional.ofNullable(customer.getEmail()).ifPresent(this::changeDisplayName);
+        Optional.ofNullable(customer.getDisplayName()).ifPresent(this::changeDisplayName);
+        Optional.ofNullable(customer.getProfilePicture()).ifPresent(this::changeProfilePicture);
     }
 
     @Builder
