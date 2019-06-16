@@ -1,6 +1,6 @@
 package com.tailors.trynewmenu.ui.util;
 
-import com.tailors.trynewmenu.infrastructure.resourcemanagement.FileUploadResult;
+import com.tailors.trynewmenu.ui.dto.FileUploadResult;
 import com.tailors.trynewmenu.infrastructure.resourcemanagement.FileUploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.tailors.trynewmenu.domain.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tailors.trynewmenu.domain.DomainEntity;
 import com.tailors.trynewmenu.domain.account.Account;
 import com.tailors.trynewmenu.domain.customer.exception.DisplayNameEmptyException;
@@ -34,6 +35,7 @@ public class Customer extends DomainEntity {
     @Column(name = "profile_picture")
     private String profilePicture;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "customer")
     private Account account;
 

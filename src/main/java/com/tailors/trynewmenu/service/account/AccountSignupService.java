@@ -2,7 +2,6 @@ package com.tailors.trynewmenu.service.account;
 
 import com.tailors.trynewmenu.domain.account.*;
 import com.tailors.trynewmenu.domain.customer.Customer;
-import com.tailors.trynewmenu.domain.customer.CustomerRepository;
 import com.tailors.trynewmenu.service.customer.CustomerSerivce;
 import com.tailors.trynewmenu.ui.dto.EmailAccountDto;
 import lombok.extern.slf4j.Slf4j;
@@ -11,9 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 @Slf4j
 @Service

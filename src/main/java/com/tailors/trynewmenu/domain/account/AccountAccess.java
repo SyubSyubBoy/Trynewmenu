@@ -1,5 +1,6 @@
 package com.tailors.trynewmenu.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tailors.trynewmenu.domain.DomainEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,11 +16,13 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 public class AccountAccess extends DomainEntity {
+    @JsonIgnore
     @ManyToOne(optional = false)
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name = "account_id", columnDefinition = "BINARY(16)")
     private Account account;
 
     @Id
+    @Column(name = "account_access_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountAccessId;
 

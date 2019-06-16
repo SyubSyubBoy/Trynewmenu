@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TRM_Account")
@@ -19,12 +20,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Account extends DomainEntity implements Serializable {
     @Id
-    @Column(name = "account_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long accountId;
+    @Column(name = "account_id", columnDefinition = "BINARY(16)", nullable = false, unique = true)
+    private UUID accountId;
 
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER, optional = false, orphanRemoval = true)
-    @JoinColumn(name = "customer_id", columnDefinition = "BINARY(16)", unique = true)
+    @JoinColumn(name = "account_id", referencedColumnName = "customer_id",
+            columnDefinition = "BINARY(16)", unique = true)
+    @MapsId
     private Customer customer;
 
     @Column(name = "is_enable")
