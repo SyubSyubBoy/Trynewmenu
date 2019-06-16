@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,27 +17,36 @@ import java.util.UUID;
 @Entity
 @Table(name = "TRM_Account")
 @Access(AccessType.FIELD)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "account_type")
 @Getter
 @NoArgsConstructor
-public class Account extends DomainEntity implements Serializable {
-    @Id
-    @Column(name = "account_id", columnDefinition = "BINARY(16)", nullable = false, unique = true)
-    private UUID accountId;
+public abstract class Account extends DomainEntity implements Serializable {
 
-    @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER, optional = false, orphanRemoval = true)
-    @JoinColumn(name = "account_id", referencedColumnName = "customer_id",
-            columnDefinition = "BINARY(16)", unique = true)
-    @MapsId
-    private Customer customer;
+    @Transient
+    public static final String CUSTOMER = "customer";
+    @Transient
+    public static final String ADMIN = "admin";
+    @Transient
+    public static final String MANAGER = "manager";
+
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "account_id", columnDefinition = "BINARY(16)")
+    protected UUID accountId;
+
+    @Column(name = "email", nullable = false, unique = true)
+    protected String email;
 
     @Column(name = "is_enable")
-    private boolean isEnable;
+    protected boolean isEnable = true;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")
-    List<AccountAccess> accountAccessList = new ArrayList<>();
+    protected List<AccountAccess> accountAccessList = new ArrayList<>();
 
-    public Account(Customer customer) {
-        this.customer = customer;
+    public void addAccountAccess(AccountAccess accountAccess) {
+        this.accountAccessList.add(accountAccess);
     }
 
     @Override

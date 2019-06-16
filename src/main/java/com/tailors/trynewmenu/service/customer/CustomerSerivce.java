@@ -28,9 +28,9 @@ public class CustomerSerivce {
         return customerRepository.save(customer);
     }
 
-    public Customer updateCustomer(CustomerDto.UpdateRequest request) {
-        return customerRepository.findById(request.getCustomerId()).map(c -> {
-            c.update(request.toEntity());
+    public Customer updateCustomer(Customer customer) {
+        return customerRepository.findById(customer.getAccountId()).map(c -> {
+            c.update(customer);
             return customerRepository.save(c);
         }).orElseThrow(CustomerNotFoundException::new);
     }

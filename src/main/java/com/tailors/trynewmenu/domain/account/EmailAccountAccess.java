@@ -9,20 +9,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TRM_Account_Access_Email")
 @Access(AccessType.FIELD)
-@DiscriminatorValue(value = "email")
+@DiscriminatorValue(AccountAccess.EMAIL)
 @Getter
 @NoArgsConstructor
 public class EmailAccountAccess extends AccountAccess {
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "password")
     private String password;
 
     @Builder
-    public EmailAccountAccess(Account account, String email, String password) {
+    public EmailAccountAccess(Account account, String password) {
         super(account);
-        this.email = email;
         this.password = password;
     }
 }

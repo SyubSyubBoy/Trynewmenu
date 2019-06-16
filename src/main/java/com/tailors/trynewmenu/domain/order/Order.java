@@ -22,7 +22,7 @@ public class Order extends DomainEntity {
     private Long orderNo;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "account_id")
     private Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)

@@ -16,6 +16,10 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 public class AccountAccess extends DomainEntity {
+
+    @Transient
+    public static final String EMAIL = "email";
+
     @JsonIgnore
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_id", columnDefinition = "BINARY(16)")
