@@ -6,6 +6,8 @@ import com.tailors.trynewmenu.domain.customer.Customer;
 import com.tailors.trynewmenu.service.customer.exception.CustomerIdFormatException;
 import lombok.*;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
@@ -15,12 +17,16 @@ public interface CustomerDto extends DomainDto<Customer> {
     @AllArgsConstructor
     @Builder
     class CreateEmailAccountRequest {
+        @NotEmpty
         @JsonProperty("email")
         String email;
 
+        @NotEmpty
         @JsonProperty("password")
         String password;
 
+        @NotEmpty
+        @Max(24)
         @JsonProperty("display_name")
         String displayName;
 
