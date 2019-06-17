@@ -2,6 +2,7 @@ package com.tailors.trynewmenu.ui.customer;
 
 import com.tailors.trynewmenu.domain.product.Product;
 import com.tailors.trynewmenu.service.product.ProductFindService;
+import com.tailors.trynewmenu.ui.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,14 +24,14 @@ public class ProductController {
     ProductFindService findService;
 
     @RequestMapping(value = "/hot", method = RequestMethod.GET)
-    public List<Product> getHotProducts() {
+    public List<ProductDto.Response> getHotProducts() {
         Pageable pageable = PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "productViews"));
         Page<Product> result = findService.getProductsByPageable(pageable);
-        return result.stream().collect(Collectors.toList());
+        return result.stream().map(ProductDto.Response::createResponse).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/{code}", method = RequestMethod.GET)
-    public Product getProductByCode(@PathVariable("code") String code) {
-        return findService.getProductByProductCode(code);
+    public ProductDto.Response getProductByCode(@PathVariable("code") String code) {
+        return ProductDto.Response.createResponse(findService.getProductByProductCode(code));
     }
 }

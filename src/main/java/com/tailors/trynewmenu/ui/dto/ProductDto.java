@@ -47,7 +47,7 @@ public interface ProductDto extends DomainDto<Product> {
 
     @Data
     @NoArgsConstructor
-    class UpdateRequest implements DomainDto<Product> {
+    class UpdateRequest implements ProductDto {
         @NotEmpty
         @JsonProperty("product_code")
         String productCode;
@@ -83,5 +83,35 @@ public interface ProductDto extends DomainDto<Product> {
         @NotEmpty
         @JsonProperty("product_code")
         String productCode;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @Builder
+    class Response {
+        @JsonProperty("product_code")
+        String productCode;
+
+        @JsonProperty("product_name")
+        String productName;
+
+        @JsonProperty("product_type")
+        String productType;
+
+        @JsonProperty("product_price")
+        Integer productPrice;
+
+        @JsonProperty("product_picture")
+        String productPicture;
+
+        public static Response createResponse(Product product) {
+            return Response.builder()
+                    .productName(product.getProductName())
+                    .productCode(product.getProductCode())
+                    .productType(product.getProductType())
+                    .productPrice(product.getProductPrice())
+                    .productPicture(product.getProductPicture())
+                    .build();
+        }
     }
 }

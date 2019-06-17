@@ -14,17 +14,18 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/customer/account")
-public class AccountManagementController {
+public class CustomerManagementController {
 
     @Autowired
     CustomerSignupService signupService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public Account createAccount(@Valid @RequestBody CustomerDto.CreateEmailAccountRequest request, BindingResult result) {
+    public CustomerDto.Response createAccount
+            (@Valid @RequestBody CustomerDto.CreateEmailAccountRequest request, BindingResult result) {
         if (result.hasErrors()) {
             throw new IllegalArgumentException();
         }
 
-        return signupService.createAccountByEmail(request);
+        return CustomerDto.Response.createResponse(signupService.createAccountByEmail(request));
     }
 }

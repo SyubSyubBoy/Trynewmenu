@@ -18,7 +18,7 @@ public class CustomerSignupService {
     CustomerSerivce customerSerivce;
 
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
-    public Account createAccountByEmail(CustomerDto.CreateEmailAccountRequest request) {
+    public Customer createAccountByEmail(CustomerDto.CreateEmailAccountRequest request) {
         Customer customer = Customer.builder()
                 .email(request.getEmail())
                 .displayName(request.getDisplayName())
