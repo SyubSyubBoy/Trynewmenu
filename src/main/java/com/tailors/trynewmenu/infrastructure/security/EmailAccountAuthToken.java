@@ -7,9 +7,10 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
-public class EmailAccountAuthToken extends AbstractAuthenticationToken {
+public class EmailAccountAuthToken extends AbstractAuthenticationToken implements AccountAuthentication {
 
     private String email;
 
@@ -18,6 +19,11 @@ public class EmailAccountAuthToken extends AbstractAuthenticationToken {
     private Account account;
 
     private EmailAccountAccess accountAccess;
+
+    @Override
+    public UUID getAccountID() {
+        return Optional.ofNullable(account).map(Account::getAccountId).orElse(null);
+    }
 
     public String getEmail() {
         return account.getEmail();
@@ -29,6 +35,7 @@ public class EmailAccountAuthToken extends AbstractAuthenticationToken {
 
     public EmailAccountAuthToken(String email, String password) {
         super(null);
+        setAuthenticated(false);
         setAuthenticated(false);
         this.email = email;
         this.password = password;
