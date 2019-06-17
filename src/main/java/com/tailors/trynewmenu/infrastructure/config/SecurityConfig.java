@@ -1,5 +1,7 @@
 package com.tailors.trynewmenu.infrastructure.config;
 
+import com.tailors.trynewmenu.infrastructure.security.EmailAccountProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,9 +18,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    EmailAccountProvider emailAccountProvider;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.authenticationProvider(emailAccountProvider);
     }
 
     @Override
