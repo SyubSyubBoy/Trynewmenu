@@ -1,5 +1,7 @@
 package com.tailors.trynewmenu.infrastructure.security;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class AccountAuthenticationFilter extends OncePerRequestFilter {
 
@@ -22,10 +25,13 @@ public class AccountAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        AccountAuthentication accountAuthentication =
-                (AccountAuthentication) session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+
+        AccountAuthentication accountAuthentication = Optional
+                .ofNullable(session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY))
+                .map(c -> (AccountAuthentication) ((SecurityContext)c).getAuthentication()).orElse(null);
 
         Optional.ofNullable(accountAuthentication).ifPresent(ac -> {
+            log.info("UUID: " + ac.getAccountID());
             SecurityContextHolder.getContext().setAuthentication(accountAuthentication);
         });
 

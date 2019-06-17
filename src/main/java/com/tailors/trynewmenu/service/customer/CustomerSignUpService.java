@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-public class CustomerSignupService {
+public class CustomerSignUpService {
 
     @Autowired
     CustomerSerivce customerSerivce;

@@ -12,9 +12,9 @@ import java.util.UUID;
 
 public class EmailAccountAuthToken extends AbstractAuthenticationToken implements AccountAuthentication {
 
-    private String email;
+    private final String email;
 
-    private String password;
+    private final String password;
 
     private Account account;
 
@@ -26,16 +26,15 @@ public class EmailAccountAuthToken extends AbstractAuthenticationToken implement
     }
 
     public String getEmail() {
-        return account.getEmail();
+        return email;
     }
 
     public String getPassword() {
-        return accountAccess.getPassword();
+        return password;
     }
 
     public EmailAccountAuthToken(String email, String password) {
         super(null);
-        setAuthenticated(false);
         setAuthenticated(false);
         this.email = email;
         this.password = password;
@@ -45,7 +44,9 @@ public class EmailAccountAuthToken extends AbstractAuthenticationToken implement
                                  Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         setAuthenticated(true);
+        this.email = account.getEmail();
         this.account = account;
+        this.password = accountAccess.getPassword();
         this.accountAccess = accountAccess;
     }
 
