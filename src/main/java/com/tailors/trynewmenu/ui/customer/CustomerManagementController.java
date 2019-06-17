@@ -1,7 +1,6 @@
 package com.tailors.trynewmenu.ui.customer;
 
-import com.tailors.trynewmenu.domain.account.Account;
-import com.tailors.trynewmenu.service.customer.CustomerSignupService;
+import com.tailors.trynewmenu.service.customer.CustomerSignUpService;
 import com.tailors.trynewmenu.ui.dto.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,7 @@ import javax.validation.Valid;
 public class CustomerManagementController {
 
     @Autowired
-    CustomerSignupService signupService;
+    CustomerSignUpService signupService;
 
     @RequestMapping(method = RequestMethod.POST)
     public CustomerDto.Response createAccount

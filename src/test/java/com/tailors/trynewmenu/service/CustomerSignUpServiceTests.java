@@ -1,7 +1,7 @@
 package com.tailors.trynewmenu.service;
 
 import com.tailors.trynewmenu.domain.account.Account;
-import com.tailors.trynewmenu.service.customer.CustomerSignupService;
+import com.tailors.trynewmenu.service.customer.CustomerSignUpService;
 import com.tailors.trynewmenu.ui.dto.CustomerDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,10 +14,10 @@ import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CustomerSignupServiceTests {
+public class CustomerSignUpServiceTests {
 
     @Autowired
-    CustomerSignupService customerSignupService;
+    CustomerSignUpService customerSignupService;
 
     @Test
     public void signin_test() {

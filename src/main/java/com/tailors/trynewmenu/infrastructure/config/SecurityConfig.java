@@ -1,13 +1,18 @@
 package com.tailors.trynewmenu.infrastructure.config;
 
+import com.tailors.trynewmenu.infrastructure.security.AccountAuthenticationFilter;
+import com.tailors.trynewmenu.infrastructure.security.EmailAccountProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.CorsUtils;
@@ -16,9 +21,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    EmailAccountProvider emailAccountProvider;
+
+    @Autowired
+    AccountAuthenticationFilter filter;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.authenticationProvider(emailAccountProvider);
     }
 
     @Override
@@ -39,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 기본 로그인 기능 비활성화
         http.formLogin().disable()
                 .httpBasic().disable();
-
+        // 인증 필터 관련
+        http.addFilterBefore(filter, BasicAuthenticationFilter.class);
     }
 
     @Bean
@@ -53,5 +66,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
