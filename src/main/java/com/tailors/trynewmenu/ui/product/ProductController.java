@@ -1,4 +1,4 @@
-package com.tailors.trynewmenu.ui.customer;
+package com.tailors.trynewmenu.ui.product;
 
 import com.tailors.trynewmenu.domain.product.Product;
 import com.tailors.trynewmenu.service.product.ProductFindService;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/customer/product")
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired

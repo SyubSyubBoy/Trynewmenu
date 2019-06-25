@@ -36,6 +36,7 @@ public class EmailAccountProvider implements AuthenticationProvider {
                     }
                 }).orElseThrow(CustomerNotFoundException::new);
 
+
         return validated;
     }
 
