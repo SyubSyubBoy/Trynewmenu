@@ -1,7 +1,8 @@
-package com.tailors.trynewmenu.service.customer;
+package com.tailors.trynewmenu.ui.customer;
 
 import com.tailors.trynewmenu.domain.account.*;
 import com.tailors.trynewmenu.domain.customer.Customer;
+import com.tailors.trynewmenu.service.customer.CustomerSerivce;
 import com.tailors.trynewmenu.ui.dto.CustomerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

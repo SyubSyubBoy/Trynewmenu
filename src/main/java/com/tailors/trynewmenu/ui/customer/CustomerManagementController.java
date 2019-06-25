@@ -1,6 +1,5 @@
 package com.tailors.trynewmenu.ui.customer;
 
-import com.tailors.trynewmenu.service.customer.CustomerSignUpService;
 import com.tailors.trynewmenu.ui.dto.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
